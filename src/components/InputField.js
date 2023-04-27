@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 import colors from '../assets/colors';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
 
-const InputField = ({ placeholder, inputStyle, secureTextEntry, keyboardType }) => {
+const InputField = ({ placeholder, inputStyle, secureTextEntry, keyboardType, textColor, value,onChange }) => {
     return (
         <TextInput
             placeholder={placeholder}
-            placeholderTextColor={'lightgray'}
+            placeholderTextColor={textColor}
+            value={value}
+            onChangeText={onChange}
             style={[styles.input, inputStyle]}
             secureTextEntry={secureTextEntry}
             keyboardType={keyboardType}

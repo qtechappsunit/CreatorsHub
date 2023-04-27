@@ -20,11 +20,12 @@ import Payment from '../../screens/customer/Payment';
 import AddCard from '../../screens/customer/AddCard';
 import Subscription from '../../screens/customer/Subscription';
 import ContactUs from '../../screens/customer/ContactUs';
+import CreatorProfile from '../../screens/creator/CreatorProfile';
 
 
 const Stack = createNativeStackNavigator();
 
-const AuthStack = () => {
+const CustomerStack = () => {
 
     return (
         <Stack.Navigator
@@ -32,28 +33,23 @@ const AuthStack = () => {
                 headerShown: false
             }}
         >
-            {/* <Stack.Screen name='GetStarted' component={GetStarted} /> */}
-            {/* <Stack.Screen name='Signin' component={Signin} /> */}
-            {/* <Stack.Screen name='Signup' component={Signup} /> */}
-            {/* <Stack.Screen name='Home' component={Home} /> */}
-            {/* <Stack.Screen name='Walkthrough' component={Walkthrough} /> */}
-            {/* <Stack.Screen name='Creator' component={Creators} /> */}
-            {/* <Stack.Screen name='NewPassword' component={NewPassword} /> */}
-            {/* <Stack.Screen name='RequestPassword' component={RequestPassword} /> */}
-            {/* <Stack.Screen name='SuccessPassword' component={SuccessPassword} /> */}
-            {/* <Stack.Screen name='SubCategory' component={SubCategory} /> */}
-            {/* <Stack.Screen name='CameraCategory' component={CameraCategory} /> */}
-            {/* <Stack.Screen name='Describe' component={Describe} /> */}
-            {/* <Stack.Screen name='Map' component={Map} /> */}
-            {/* <Stack.Screen name='ShootCalendar' component={ShootCalendar} /> */}
-            {/* <Stack.Screen name='BookingDetails' component={BookingDetails} /> */}
-            {/* <Stack.Screen name='SubmitVideos' component={SubmitVideos} /> */}
-            {/* <Stack.Screen name='Payment' component={Payment} /> */}
-            {/* <Stack.Screen name='AddCard' component={AddCard} /> */}
-            {/* <Stack.Screen name='Subscription' component={Subscription} /> */}
+            <Stack.Screen name='Home' component={Home} />
+            <Stack.Screen name='Walkthrough' component={Walkthrough} />
+            <Stack.Screen name='Creators' component={Creators} />
+            <Stack.Screen name='CustomerProfile' component={CreatorProfile} />
+            <Stack.Screen name='SubCategory' component={SubCategory} />
+            <Stack.Screen name='CameraCategory' component={CameraCategory} />
+            <Stack.Screen name='Describe' component={Describe} />
+            <Stack.Screen name='Map' component={Map} />
+            <Stack.Screen name='ShootCalendar' component={ShootCalendar} />
+            <Stack.Screen name='BookingDetails' component={BookingDetails} />
+            <Stack.Screen name='SubmitVideos' component={SubmitVideos} />
+            <Stack.Screen name='Payment' component={Payment} />
+            <Stack.Screen name='AddCard' component={AddCard} />
+            <Stack.Screen name='Subscription' component={Subscription} />
             <Stack.Screen name='ContactUs' component={ContactUs} />
         </Stack.Navigator>
     )
 }
 
-export default AuthStack;
+export default CustomerStack;

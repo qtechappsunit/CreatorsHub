@@ -1,14 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
+import colors from '../assets/colors';
 
 const ContactInput = ({placeholder,style, keyboardType}) => {
     return (
-        <View style={[styles.inputContainer,style]}>
+        <View>
             <TextInput
                 placeholder={placeholder}
                 placeholderTextColor={'#BDBDBD'}
-                style={styles.input}
+                style={[styles.inputContainer,style]}
                 keyboardType={keyboardType}
             />
         </View>
@@ -21,9 +22,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         borderBottomColor: '#686868',
         borderBottomWidth: 3,
-        width: heightPercentageToDP('18%')
+        fontSize: heightPercentageToDP('2%'),
+        color:colors.black
     },
-    input: {
-        fontSize: heightPercentageToDP('2%')
-    }
 })

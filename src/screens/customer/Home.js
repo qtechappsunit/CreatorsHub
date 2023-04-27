@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import Wrapper from '../../components/Wrapper';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
 import ProfileAvatar from '../../components/ProfileAvatar';
@@ -9,6 +9,8 @@ import PhotographerCard from '../../components/PhotographerCard';
 import images from '../../assets/images';
 import SideOption from '../../components/SideOption';
 import PhotosCard from '../../components/PhotosCard';
+import BottomBar from '../../components/BottomBar';
+import { useNavigation } from '@react-navigation/native';
 
 const photographers = [
     {
@@ -52,15 +54,15 @@ const photographers = [
 const photoCard = [
     {
         id: 1,
-        image: images.photo,
+        image: images.photohome1,
         icon: true,
         profile: images.photographer,
         name: 'Jake Larson',
         skill: 'Producer, Editor, Director'
     },
     {
-        id: 1,
-        image: images.photo2,
+        id: 2,
+        image: images.photohome2,
         icon: false,
         profile: images.photographer,
         name: 'Jake Larson',
@@ -69,6 +71,11 @@ const photoCard = [
 ]
 
 const Home = () => {
+
+    const navigation = useNavigation();
+
+
+
     return (
         <Wrapper>
             <View
@@ -104,16 +111,22 @@ const Home = () => {
                             data={photographers}
                             keyExtractor={(item) => item.id}
                             renderItem={({ item, index }) => (
-                                <PhotographerCard
-                                    key={index}
-                                    image={item.image}
-                                    name={item.name}
-                                    skill={item.text}
-                                />
+                                <TouchableOpacity
+                                    onPress={() => navigation.navigate('Walkthrough')}
+                                    activeOpacity={0.9}
+                                >
+                                    <PhotographerCard
+                                        key={index}
+                                        image={item.image}
+                                        name={item.name}
+                                        skill={item.text}
+                                    />
+                                </TouchableOpacity>
                             )}
                         />
                         {photoCard.map((item) => (
                             <PhotosCard
+                                key={item.id}
                                 image={item.image}
                                 icon={item.icon}
                                 profile={item.profile}
@@ -125,6 +138,9 @@ const Home = () => {
                 </View>
             </ScrollView>
             <SideOption />
+            <BottomBar
+                active={'HOME'}
+            />
         </Wrapper>
     )
 }
@@ -132,5 +148,4 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-
 })

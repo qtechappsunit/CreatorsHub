@@ -4,11 +4,14 @@ import { heightPercentageToDP } from 'react-native-responsive-screen';
 import colors from '../assets/colors';
 import Arrow from 'react-native-vector-icons/EvilIcons';
 import DatePicker from 'react-native-date-picker'
+import { useNavigation } from '@react-navigation/native';
 
 const BookingCard = () => {
     const [date, setDate] = useState(new Date())
     const [open, setOpen] = useState(false)
     const [time, setTime] = useState(true)
+
+    const navigation = useNavigation();
 
     const onDatePicker = () => {
         setOpen(true)
@@ -36,7 +39,9 @@ const BookingCard = () => {
                 <Text
                     style={styles.time}>{date.toLocaleTimeString()}</Text>
             </TouchableOpacity>
-            <View style={styles.availableView}>
+            <TouchableOpacity style={styles.availableView}
+                onPress={() => navigation.navigate('BookingDetails')}
+            >
                 <View>
                     <Text style={styles.availableText}>Available</Text>
                     <Text style={{ fontSize: heightPercentageToDP('1.4%'), color: '#8B9091' }}>Chat, audio or video format</Text>
@@ -45,9 +50,9 @@ const BookingCard = () => {
                     name={'arrow-right'}
                     size={40}
                     color={colors.primary}
-                    onPress={() => alert('work in progress')}
+                // onPress={() => alert('work in progress')}
                 />
-            </View>
+            </TouchableOpacity>
         </View >
     )
 }
@@ -56,12 +61,12 @@ export default BookingCard;
 
 const styles = StyleSheet.create({
     bookingDate: {
-        padding: heightPercentageToDP('2%'),
+        padding: heightPercentageToDP('2.5%'),
         backgroundColor: '#F3F3F3',
         flexDirection: 'row',
         borderRadius: 10,
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     time: {
         fontSize: heightPercentageToDP('2.2%'),
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
     availableView: {
         padding: heightPercentageToDP('1%'),
         backgroundColor: colors.white,
-        width: heightPercentageToDP('28%'),
+        width: '64%',
         alignSelf: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',

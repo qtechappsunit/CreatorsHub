@@ -5,8 +5,13 @@ import Header from '../../components/Header';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
 import DescribeInput from '../../components/DescribeInput';
 import Button from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
+import BottomBar from '../../components/BottomBar';
 
 const Describe = () => {
+
+    const navigation = useNavigation();
+
     return (
         <Wrapper>
             <Header
@@ -18,7 +23,7 @@ const Describe = () => {
                     padding: heightPercentageToDP('6%')
                 }}
             >
-                <DescribeInput 
+                <DescribeInput
                     placeholder={'Describe a message'}
                 />
             </View>
@@ -32,8 +37,12 @@ const Describe = () => {
             >
                 <Button
                     buttonText={'Next'}
+                    onPress={() => navigation.navigate('Map')}
                 />
             </View>
+            <BottomBar
+                active={'BOOK'}
+            />
         </Wrapper>
     )
 }

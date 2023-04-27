@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
 import images from '../../assets/images';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
@@ -6,11 +6,35 @@ import fonts from '../../assets/fonts';
 import colors from '../../assets/colors';
 import Button from '../../components/Button';
 import InputField from '../../components/InputField';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Signin = () => {
+    const [username, setUsername] = useState('')
+
+    const navigation = useNavigation()
+
+    const onSignin = async () => {
+
+
+        if (!username) {
+            alert('enter your username')
+        } else if (username.toLowerCase() == 'creator') {
+
+            await AsyncStorage.setItem('userType', 'creator')
+            navigation.navigate('CreatorStack')
+        } else if (username.toLowerCase() == 'customer') {
+            await AsyncStorage.setItem('userType', 'customer')
+            navigation.navigate('CustomerStack')
+        } else {
+            alert('invalid user')
+        }
+
+    }
+
     return (
         <ScrollView
-            contentContainerStyle={{flexGrow: 1}}
+            contentContainerStyle={{ flexGrow: 1 }}
         >
             <ImageBackground
                 style={styles.container}
@@ -24,16 +48,24 @@ const Signin = () => {
                 >
                     <InputField
                         placeholder={'Username'}
+                        value={username}
+                        onChange={(text) => setUsername(text)}
+                        textColor={colors.white}
                     />
                     <InputField
                         placeholder={'Password'}
                         secureTextEntry={true}
+                        textColor={colors.white}
                     />
-                    <Text style={{
-                        color: colors.white,
-                        textAlign: 'center',
-                        fontSize: heightPercentageToDP('1.9%')
-                    }}>Forgot Password</Text>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('NewPassword')}
+                    >
+                        <Text style={{
+                            color: colors.white,
+                            textAlign: 'center',
+                            fontSize: heightPercentageToDP('1.9%')
+                        }}>Forgot Password</Text>
+                    </TouchableOpacity>
                 </View>
                 <View
                     style={{
@@ -42,10 +74,11 @@ const Signin = () => {
                 >
                     <Button
                         buttonText={'Sign in '}
+                        onPress={() => onSignin()}
                     />
                     <TouchableOpacity
                         activeOpacity={0.9}
-                        onPress={() => alert('work in progress')}
+                        onPress={() => navigation.navigate('Signup')}
                     >
                         <Text
                             style={{

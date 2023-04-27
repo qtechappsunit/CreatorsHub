@@ -17,7 +17,7 @@ const PhotosCard = ({ icon, image, profile, name, skill }) => {
                     name={icon ? 'bookmark-minus' : 'bookmark-minus-outline'}
                     size={25}
                     style={{ position: 'absolute', alignSelf: 'center', top: 3 }}
-                    color={icon ? colors.primary : 'gray'}
+                    color={icon ? 'rgba(0, 0, 255, 1)'  : 'gray'}
                 />
             </View>
             <View
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     photoImage: {
         height: heightPercentageToDP('35%'),
         width: widthPercentageToDP('85%'),
+        borderRadius: 50
     },
     photographerImage: {
         height: heightPercentageToDP('5%'),

@@ -2,13 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import Wrapper from '../../components/Wrapper';
 import SideOption from '../../components/SideOption';
-import CreatorProfile from '../../components/CreatorProfile';
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
 import images from '../../assets/images';
 import colors from '../../assets/colors';
 import fonts from '../../assets/fonts';
 import VideoShootCard from '../../components/VideoShootCard';
-
+import BuyAndSell from '../../components/BuyAndSell';
+import BottomBar from '../../components/BottomBar';
+import { useNavigation } from '@react-navigation/native';
+import Profile from '../../components/Profile';
 
 
 const photoShoot = [
@@ -29,15 +31,18 @@ const photoShoot = [
 const videoShoot = [
     {
         id: 1,
-        image: images.video
+        image: images.video,
+        buy: false
     },
     {
         id: 2,
-        image: images.video2
+        image: images.video2,
+        buy: true
     }
 ]
 
 const Walkthrough = () => {
+
 
     return (
         <Wrapper>
@@ -50,7 +55,11 @@ const Walkthrough = () => {
                         paddingTop: heightPercentageToDP('7%')
                     }}
                 >
-                    <CreatorProfile />
+                    <Profile
+                        name={'Crystal Phillips'}
+                        image={images.photographer1}
+                        book
+                    />
                     <View
                         style={{
                             paddingTop: heightPercentageToDP('2.5%')
@@ -93,6 +102,7 @@ const Walkthrough = () => {
                             {videoShoot.map((item) => (
                                 <VideoShootCard
                                     key={item.id}
+                                    buy={item.buy}
                                     image={item.image}
                                 />
                             ))}
@@ -101,6 +111,10 @@ const Walkthrough = () => {
                 </View>
             </ScrollView>
             <SideOption />
+            <BottomBar
+                active={'CREATORS'}
+            // buyandSell
+            />
         </Wrapper>
     )
 }
@@ -136,5 +150,5 @@ const styles = StyleSheet.create({
     shootImage: {
         height: heightPercentageToDP('20%'),
         width: widthPercentageToDP('25%')
-    }
+    },
 })

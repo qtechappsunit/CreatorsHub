@@ -9,7 +9,7 @@ const PhotographerCard = ({ image, name, skill }) => {
         <View
             style={{
                 marginBottom: heightPercentageToDP('3%'),
-                marginRight: heightPercentageToDP('5%')
+                marginHorizontal: heightPercentageToDP('1.6%')
             }}
         >
             <Image

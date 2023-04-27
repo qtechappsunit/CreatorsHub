@@ -3,8 +3,12 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import colors from '../assets/colors';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
 import fonts from '../assets/fonts';
+import { useNavigation } from '@react-navigation/native';
 
 const AuthHeader = () => {
+
+    const navigation = useNavigation();
+
     return (
         <View>
             <TouchableOpacity
@@ -12,7 +16,7 @@ const AuthHeader = () => {
                     padding: heightPercentageToDP('3%'),
                     paddingTop: heightPercentageToDP('6%')
                 }}
-                onPress={() => alert('work in progress')}
+                onPress={() => navigation.navigate('Signin')}
             >
                 <Text
                     style={{
@@ -27,8 +31,8 @@ const AuthHeader = () => {
                     borderBottomWidth: 1,
                     borderBottomColor: '#707070',
                     paddingTop: heightPercentageToDP('1%'),
-                    width: heightPercentageToDP('45%'),
-                    alignSelf: 'center'
+                    width: '92%',
+                    alignSelf: 'center',
                 }}></View>
         </View>
     )

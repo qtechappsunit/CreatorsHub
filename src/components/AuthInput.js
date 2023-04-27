@@ -6,7 +6,7 @@ import { heightPercentageToDP } from 'react-native-responsive-screen';
 import Lock from 'react-native-vector-icons/Feather';
 import Eye from 'react-native-vector-icons/Entypo';
 
-const AuthInput = ({ placeholder, secureTextEntry, keyboardType, label, inputStyle, email }) => {
+const AuthInput = ({ placeholder, secureTextEntry, keyboardType, label, inputStyle, email, value,onChange }) => {
     return (
         <View>
             {label &&
@@ -48,6 +48,8 @@ const AuthInput = ({ placeholder, secureTextEntry, keyboardType, label, inputSty
                     style={{ color: colors.white, marginLeft: heightPercentageToDP('5%') }}
                     secureTextEntry={secureTextEntry}
                     keyboardType={keyboardType}
+                    value={value}
+                    onChangeText={onChange}
                 />
             </View>
         </View>

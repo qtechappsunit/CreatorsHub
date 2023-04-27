@@ -4,6 +4,7 @@ import { heightPercentageToDP } from 'react-native-responsive-screen';
 import colors from '../assets/colors';
 import fonts from '../assets/fonts';
 
+
 const OptionCircle = ({ text, style, textStyle, selected, onPress }) => {
     return (
         <TouchableOpacity
@@ -17,6 +18,8 @@ const OptionCircle = ({ text, style, textStyle, selected, onPress }) => {
 }
 
 const SwitchOptions = ({ heading, text1, text2, text3, text4, viewStyle, selectedValue, onOptionPress }) => {
+
+
 
     const selectOption = (value) => {
         onOptionPress(value)

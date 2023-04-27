@@ -3,10 +3,14 @@ import { StyleSheet, View, Text, ImageBackground, Image } from 'react-native';
 import images from '../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
-import colors from '../../assets/colors';
 import Button from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
+
 
 const SuccessPassword = () => {
+
+    const navigation = useNavigation()
+
     return (
         <ImageBackground
             source={images.creator1}
@@ -47,7 +51,8 @@ const SuccessPassword = () => {
                     }}
                 >
                     <Button
-                        buttonText={'Open email app'}
+                        buttonText={'Continue'}
+                        onPress={() => navigation.navigate('Signin')}
                     />
                 </View>
             </LinearGradient>

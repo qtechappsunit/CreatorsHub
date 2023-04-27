@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
-import MoVideoPlayer from 'react-native-mo-video-player';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
 import colors from '../../assets/colors';
 import fonts from '../../assets/fonts';
 import InformationRow from '../../components/InformationRow';
 import Button from '../../components/Button';
 import SideOption from '../../components/SideOption';
+import Video from 'react-native-video';
+import BottomBar from '../../components/BottomBar';
+import { useNavigation } from '@react-navigation/native';
 
 const information = [
     {
@@ -26,9 +28,12 @@ const information = [
     }
 ]
 
+
+
 const BookingDetails = () => {
 
     const width = Dimensions.get('window').width;
+    const navigation = useNavigation();
 
     return (
         <View
@@ -36,16 +41,24 @@ const BookingDetails = () => {
                 flex: 1
             }}
         >
-            <MoVideoPlayer
-                source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" }}
-                style={{ width: width, height: heightPercentageToDP('45%') }}
-                // autoPlay
-
+            <Video
+                source={{ uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" }}
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                }}
+                muted={true}
+                resizeMode={'stretch'}
+            // paused={true}
             />
             <ScrollView style={styles.container}
                 contentContainerStyle={{
-                    paddingTop: heightPercentageToDP('1.5%'),
-                    padding: heightPercentageToDP('3%')
+                    paddingTop: heightPercentageToDP('0.5%'),
+                    padding: heightPercentageToDP('3%'),
+                    paddingBottom: heightPercentageToDP('15%')
                 }}
                 showsVerticalScrollIndicator={false}
             >
@@ -81,6 +94,7 @@ const BookingDetails = () => {
                         >
                             {information.map((item) => (
                                 <InformationRow
+                                    key={item.id}
                                     icon={item.icon}
                                     text={item.text}
                                 />
@@ -91,16 +105,24 @@ const BookingDetails = () => {
                 </View>
                 <Button
                     linearButton
-                    buttonStyle={{ backgroundColor: '#D4D4D4' }}
+                    buttonStyle={{ backgroundColor: '#D4D4D4', alignSelf: 'center' }}
                     buttonText={'Submit Videos'}
+                    onPress={() => navigation.navigate('SubmitVideos')}
                     textStyle={{ color: '#707070' }}
                 />
                 <Button
                     buttonText={'Booking details'}
-                    buttonStyle={{ marginTop: heightPercentageToDP('2.5%') }}
+                    onPress={() => navigation.navigate('Payment')}
+                    buttonStyle={{ marginTop: heightPercentageToDP('2.5%'), alignSelf: 'center' }}
                 />
             </ScrollView>
             <SideOption />
+            <View style={styles.wrapper}>
+                <BottomBar
+                    active={'BOOK'}
+                    style={{width: '97%'}}
+                />
+            </View>
         </View>
     )
 }
@@ -110,7 +132,7 @@ export default BookingDetails;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
-        height: heightPercentageToDP('68%'),
+        height: heightPercentageToDP('75%'),
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         position: 'absolute',
@@ -127,5 +149,9 @@ const styles = StyleSheet.create({
         fontFamily: fonts.Bold,
         fontSize: heightPercentageToDP('2.5%'),
         color: colors.black
+    },
+    wrapper: {
+        position: 'absolute',
+        bottom: 0
     }
 })

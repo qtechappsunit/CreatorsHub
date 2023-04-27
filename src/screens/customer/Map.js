@@ -7,25 +7,33 @@ import fonts from '../../assets/fonts';
 import SearchBar from '../../components/SearchBar';
 import MapView from 'react-native-maps';
 import Button from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
+import BottomBar from '../../components/BottomBar';
 
 const Map = () => {
+
+    const navigation = useNavigation();
+
     return (
         <Wrapper>
             <Header
                 text={'Map'}
             />
-            <View
+
+            <Text
                 style={{
-                    padding: heightPercentageToDP('5%'),
-                    paddingTop: heightPercentageToDP('0%')
+                    fontSize: heightPercentageToDP('2%'),
+                    color: '#BDBDBD',
+                    marginLeft: heightPercentageToDP('3%')
                 }}
+            >Location</Text>
+            <ScrollView
+                contentContainerStyle={{
+                    padding: heightPercentageToDP('3%'),
+                    paddingBottom: heightPercentageToDP('15%')
+                }}
+                showsVerticalScrollIndicator={false}
             >
-                <Text
-                    style={{
-                        fontSize: heightPercentageToDP('2%'),
-                        color: '#BDBDBD'
-                    }}
-                >Location</Text>
                 <View
                     style={{
                         paddingTop: heightPercentageToDP('1%'),
@@ -38,8 +46,7 @@ const Map = () => {
                     style={{
                         borderRadius: 30,
                         overflow: "hidden",
-                        backgroundColor: 'red',
-                        height: heightPercentageToDP('60%'),
+                        height: heightPercentageToDP('55%'),
                     }}
                 >
                     <MapView
@@ -54,7 +61,15 @@ const Map = () => {
                 </View>
                 <Button
                     buttonText={'Shoot on calendar'}
-                    buttonStyle={{ marginTop: heightPercentageToDP('4.5%') }}
+                    buttonStyle={{ marginTop: heightPercentageToDP('4.5%'), alignSelf: 'center' }}
+                    onPress={() => navigation.navigate('ShootCalendar')}
+                />
+            </ScrollView>
+            <View style={styles.wrapper}>
+                <BottomBar
+                    active={'BOOK'}
+                    style={{ width: '97%' }}
+                    barStyle={{ bottom: heightPercentageToDP('9.6%') }}
                 />
             </View>
         </Wrapper>
@@ -67,5 +82,9 @@ const styles = StyleSheet.create({
     map: {
         height: '100%',
         width: '100%',
+    },
+    wrapper: {
+        position: 'absolute',
+        bottom: 0
     }
 })

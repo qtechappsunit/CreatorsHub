@@ -47,7 +47,7 @@ export default SideOption;
 const styles = StyleSheet.create({
     optionView: {
         padding: heightPercentageToDP('0.5%'),
-        backgroundColor: colors.primary,
+        backgroundColor: colors.primary ,
         borderRadius: 40,
         width: heightPercentageToDP('22%'),
     },

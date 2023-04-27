@@ -1,16 +1,18 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AuthStack from './Auth/AuthStack';
 import AppStatusBar from '../components/AppStatusBar';
 import SplashScreen from 'react-native-splash-screen';
+import CustomerStack from './Customer/CustomerStack';
+import CreatorStack from './Creator/CreatorStack';
+import AuthStack from './AuthStack';
 
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
-    useEffect(()=>{
+    useEffect(() => {
         SplashScreen.hide()
-    },[])
+    }, [])
     return (
         <NavigationContainer>
             <AppStatusBar />
@@ -20,6 +22,8 @@ const Routes = () => {
                 }}
             >
                 <Stack.Screen name='AuthStack' component={AuthStack} />
+                <Stack.Screen name='CustomerStack' component={CustomerStack} />
+                <Stack.Screen name='CreatorStack' component={CreatorStack} />
             </Stack.Navigator>
         </NavigationContainer>
     )

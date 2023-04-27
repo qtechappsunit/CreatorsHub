@@ -10,6 +10,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import SideOption from '../../components/SideOption';
 import fonts from '../../assets/fonts';
 import Button from '../../components/Button';
+import BottomBar from '../../components/BottomBar';
+import { useNavigation } from '@react-navigation/native';
 
 const options = [
     {
@@ -57,8 +59,9 @@ const CameraCategory = () => {
     //     setSelectOptions(options.map(option => {return {type: option.type, value: ''}}))
     // },[])
 
-    const onOptionPress = (type, value) => {
+    const navigation = useNavigation();
 
+    const onOptionPress = (type, value) => {
         setSelectOptions({ ...selectedOptions, [type]: value })
 
         // const tempOptions = selectedOptions.map(option => {
@@ -87,11 +90,12 @@ const CameraCategory = () => {
                 <SearchBar />
             </View>
             <ScrollView
-                contentContainerStyle={{ paddingBottom: heightPercentageToDP('2%'), alignItems: 'center' }}
+                contentContainerStyle={{ paddingBottom: heightPercentageToDP('10%'), alignItems: 'center' }}
                 showsVerticalScrollIndicator={false}
             >
                 {options.map((item) => (
                     <SwitchOptions
+                        key={item.id}
                         heading={item.heading}
                         text1={item.text1}
                         text2={item.text2}
@@ -126,14 +130,22 @@ const CameraCategory = () => {
                             linearButton
                             buttonStyle={{ backgroundColor: '#BDBDBD', marginBottom: heightPercentageToDP('3%') }}
                             buttonText={'Describe'}
+                            onPress={() => navigation.navigate('Describe')}
                         />
                         <Button
                             buttonText={'Next'}
+                            onPress={() => navigation.navigate('Map')}
                         />
                     </View>
                 </View>
             </ScrollView>
             <SideOption />
+            <View style={styles.wrapper}>
+                <BottomBar
+                    active={'BOOK'}
+                    style={{ width: '97%' }}
+                />
+            </View>
         </Wrapper>
     )
 }
@@ -141,5 +153,8 @@ const CameraCategory = () => {
 export default CameraCategory;
 
 const styles = StyleSheet.create({
-
+    wrapper: {
+        position: 'absolute',
+        bottom: 0
+    }
 })

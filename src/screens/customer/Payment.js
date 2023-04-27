@@ -7,6 +7,8 @@ import PaymentCard from '../../components/PaymentCard';
 import images from '../../assets/images';
 import colors from '../../assets/colors';
 import Button from '../../components/Button';
+import BottomBar from '../../components/BottomBar';
+import { useNavigation } from '@react-navigation/native';
 
 const cards = [
     {
@@ -32,6 +34,9 @@ const cards = [
 ]
 
 const Payment = () => {
+
+    const navigation = useNavigation();
+
     return (
         <Wrapper>
             <Header
@@ -39,7 +44,7 @@ const Payment = () => {
             />
             <ScrollView
                 contentContainerStyle={{
-                    padding: heightPercentageToDP('3%'),
+                    padding: heightPercentageToDP('4%'),
                     paddingTop: heightPercentageToDP('0.5%')
                 }}
                 showsVerticalScrollIndicator={false}
@@ -51,15 +56,18 @@ const Payment = () => {
                     }}
                 >
                     {cards.map((item) => (
-
-                        <PaymentCard
+                        <TouchableOpacity
                             key={item.id}
-                            selected={item.image}
-                            card={item.cardImage}
-                            cardText={item.text}
-                        />
+                            activeOpacity={0.6}
+                        >
+                            <PaymentCard
+                                key={item.id}
+                                selected={item.image}
+                                card={item.cardImage}
+                                cardText={item.text}
+                            />
+                        </TouchableOpacity>
                     ))}
-
                 </View>
                 <Text style={styles.heading}>Order Info</Text>
                 <View
@@ -108,13 +116,18 @@ const Payment = () => {
                     }}
                     linearButton
                     buttonText={'Add a Card'}
+                    onPress={() => navigation.navigate('AddCard')}
                     textStyle={{ color: '#707070' }}
                 />
                 <Button
                     buttonStyle={{ alignSelf: 'center' }}
                     buttonText={'Make Payment'}
+                    onPress={() => navigation.navigate('Subscription')}
                 />
             </ScrollView>
+            <BottomBar
+                active={'BOOK'}
+            />
         </Wrapper>
     )
 }

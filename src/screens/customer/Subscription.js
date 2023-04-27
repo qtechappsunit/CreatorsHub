@@ -6,8 +6,13 @@ import { heightPercentageToDP } from 'react-native-responsive-screen';
 import images from '../../assets/images';
 import colors from '../../assets/colors';
 import Button from '../../components/Button';
+import BottomBar from '../../components/BottomBar';
+import { useNavigation } from '@react-navigation/native';
 
 const Subscription = () => {
+
+    const navigation = useNavigation();
+
     return (
         <Wrapper>
             <Header
@@ -23,8 +28,10 @@ const Subscription = () => {
             <ScrollView
                 contentContainerStyle={{
                     alignItems: 'center',
-                    paddingTop: heightPercentageToDP('8%')
+                    paddingTop: heightPercentageToDP('8%'),
+                    paddingBottom: heightPercentageToDP('3%')
                 }}
+                showsVerticalScrollIndicator={false}
             >
                 <Image
                     source={images.subscription}
@@ -53,12 +60,17 @@ const Subscription = () => {
                     }}
                     linearButton
                     buttonText={'Contact Us'}
+                    onPress={() => navigation.navigate('ContactUs')}
                     textStyle={{ color: '#707070' }}
                 />
                 <Button
                     buttonText={'Done'}
+                    onPress={() => navigation.navigate('Home')}
                 />
             </ScrollView>
+            <BottomBar
+                active={'BOOK'}
+            />
         </Wrapper>
     )
 }

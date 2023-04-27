@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import images from '../../assets/images';
@@ -8,8 +8,25 @@ import colors from '../../assets/colors';
 import fonts from '../../assets/fonts';
 import AuthInput from '../../components/AuthInput';
 import Button from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
 
 const NewPassword = () => {
+    const [email, setEmail] = useState(null)
+
+    const navigation = useNavigation();
+
+    const onResetPassword = () => {
+
+        if (!email) {
+            alert('please enter your email')
+        } else if (email) {
+            navigation.navigate('RequestPassword')
+        } else {
+            alert('invalid email')
+        }
+
+    }
+
     return (
         <ImageBackground
             source={images.creator1}
@@ -54,7 +71,9 @@ const NewPassword = () => {
                         <AuthInput
                             placeholder={'Enter your email...'}
                             keyboardType={'email-address'}
-                            email
+                            email={true}
+                            value={email}
+                            onChange={(text) => setEmail(text)}
                         />
                     </View>
                 </View>
@@ -65,7 +84,7 @@ const NewPassword = () => {
                         flex: 1,
                         marginBottom: heightPercentageToDP('6%'),
                     }}
-                    onPress={() => alert('work in progress')}
+                    onPress={() => navigation.navigate('Signin')}
                     activeOpacity={0.9}
                 >
                     <Text style={{ color: '#9CA3AF', fontSize: heightPercentageToDP('2%') }}>You remember your password <Text style={{
@@ -73,6 +92,7 @@ const NewPassword = () => {
                     }}> Login</Text></Text>
                     <Button
                         buttonText={'Request password reset'}
+                        onPress={() => onResetPassword()}
                         buttonStyle={{ marginTop: heightPercentageToDP('3%') }}
                     />
                 </TouchableOpacity>

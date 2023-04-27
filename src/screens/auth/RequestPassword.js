@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import images from '../../assets/images';
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,6 +8,8 @@ import colors from '../../assets/colors';
 import fonts from '../../assets/fonts';
 import AuthInput from '../../components/AuthInput';
 import Button from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const option = [
     {
@@ -21,14 +23,18 @@ const option = [
 ]
 
 const RequestPassword = () => {
+    const [resetPassword, setResetPassword] = useState(null)
 
-    onOptionPress = (ID) => {
-        if (ID == '1') {
-            alert('working in progress')
+    const navigation = useNavigation()
+
+    const onPassword = () => {
+
+        if (!resetPassword) {
+            alert('please enter your new password')
+        } else {
+            navigation.navigate('SuccessPassword')
         }
-        else if (ID == '2') {
-            alert('working in progress')
-        }
+
     }
 
     return (
@@ -36,92 +42,98 @@ const RequestPassword = () => {
             source={images.creator1}
             style={styles.container}
         >
-            <LinearGradient
-                colors={['#000', 'transparent']}
-                start={{ x: 0, y: 0.7 }} end={{ x: 0, y: 0 }}
-                style={{
-                    flex: 1,
-                }}
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1 }}
             >
-                <AuthHeader />
-                <View
+                <LinearGradient
+                    colors={['#000', 'transparent']}
+                    start={{ x: 0, y: 0.7 }} end={{ x: 0, y: 0 }}
                     style={{
-                        paddingTop: heightPercentageToDP('2%'),
-                        padding: heightPercentageToDP('2%')
+                        flex: 1,
                     }}
                 >
-                    <Text
-                        style={{
-                            color: colors.white,
-                            fontSize: heightPercentageToDP('3.2%'),
-                            fontFamily: fonts.Medium
-                        }}
-                    >Enter Your Password</Text>
+                    <AuthHeader />
                     <View
                         style={{
-                            paddingTop: heightPercentageToDP('3%'),
-                            flexDirection: 'row'
+                            paddingTop: heightPercentageToDP('2%'),
+                            padding: heightPercentageToDP('2%')
                         }}
                     >
-                        <View
-                            style={styles.imageBorder}
-                        >
-                            <Image
-                                source={images.user}
-                                style={styles.userImage}
-                            />
-                        </View>
-                        <View
-                            style={{
-                                marginLeft: heightPercentageToDP('3%')
-                            }}
-                        >
-                            <Text
-                                style={{
-                                    color: colors.white,
-                                    fontSize: heightPercentageToDP('2.3%'),
-                                    marginTop: heightPercentageToDP('1.2%')
-                                }}
-                            >
-                                Jason@yourmail.com</Text>
-                            <Text
-                                style={{
-                                    color: colors.white,
-                                    marginTop: heightPercentageToDP('0.7%')
-                                }}
-                            >
-                                Personal Account</Text>
-                        </View>
-                    </View>
-                    <View
-                        style={{
-                            paddingTop: heightPercentageToDP('4%'),
-                        }}
-                    ><View
-                        style={{
-                            marginBottom: heightPercentageToDP('4%')
-                        }}
-                    >
-                            <AuthInput
-                                label={'Create new password'}
-                                placeholder={'Enter your new password'}
-                                inputStyle={{ marginTop: heightPercentageToDP('4%') }}
-                                secureTextEntry={true}
-                            />
-                        </View>
-                        <AuthInput
-                            label={'Password must be at least 8 characters'}
-                            placeholder={'Re-type your  password'}
-                            inputStyle={{ marginTop: heightPercentageToDP('4.5%') }}
-                            secureTextEntry={true}
-                        />
                         <Text
                             style={{
-                                color: '#9CA3AF',
-                                marginTop: heightPercentageToDP('3%')
+                                color: colors.white,
+                                fontSize: heightPercentageToDP('3.2%'),
+                                fontFamily: fonts.Medium
                             }}
-                        >Both password must match</Text>
+                        >Enter Your Password</Text>
                         <View
+                            style={{
+                                paddingTop: heightPercentageToDP('3%'),
+                                flexDirection: 'row'
+                            }}
+                        >
+                            <View
+                                style={styles.imageBorder}
+                            >
+                                <Image
+                                    source={images.user}
+                                    style={styles.userImage}
+                                />
+                            </View>
+                            <View
+                                style={{
+                                    marginLeft: heightPercentageToDP('3%')
+                                }}
+                            >
+                                <Text
+                                    style={{
+                                        color: colors.white,
+                                        fontSize: heightPercentageToDP('2.3%'),
+                                        marginTop: heightPercentageToDP('1.2%')
+                                    }}
+                                >
+                                    Jason@yourmail.com</Text>
+                                <Text
+                                    style={{
+                                        color: colors.white,
+                                        marginTop: heightPercentageToDP('0.7%')
+                                    }}
+                                >
+                                    Personal Account</Text>
+                            </View>
+                        </View>
+                        <View
+                            style={{
+                                paddingTop: heightPercentageToDP('4%'),
+                            }}
+                        ><View
+                            style={{
+                                marginBottom: heightPercentageToDP('4%')
+                            }}
+                        >
+                                <AuthInput
+                                    label={'Create new password'}
+                                    placeholder={'Enter your new password'}
+                                    inputStyle={{ marginTop: heightPercentageToDP('4%') }}
+                                    secureTextEntry={true}
+                                    value={resetPassword}
+                                    onChange={(text) => setResetPassword(text)}
+                                />
+                            </View>
+                            <AuthInput
+                                label={'Password must be at least 8 characters'}
+                                placeholder={'Re-type your  password'}
+                                inputStyle={{ marginTop: heightPercentageToDP('4.5%') }}
+                                secureTextEntry={true}
+
+                            />
+                            <Text
+                                style={{
+                                    color: '#9CA3AF',
+                                    marginTop: heightPercentageToDP('3%')
+                                }}
+                            >Both password must match</Text>
+                            {/* <View
                             style={{
                                 paddingTop: heightPercentageToDP('4%'),
                                 padding: heightPercentageToDP('2%'),
@@ -135,6 +147,7 @@ const RequestPassword = () => {
                                     onPress={() => onOptionPress(item.id)}
                                 >
                                     <Text
+                                        key={item.id}
                                         style={{
                                             color: colors.white,
                                             fontSize: heightPercentageToDP('2%')
@@ -142,22 +155,24 @@ const RequestPassword = () => {
                                     >{item.text}</Text>
                                 </TouchableOpacity>
                             ))}
+                        </View> */}
                         </View>
                     </View>
-                </View>
-                <View
-                    style={{
-                        justifyContent: 'flex-end',
-                        alignItems: 'center',
-                        flex: 1,
-                        marginBottom: heightPercentageToDP('5%')
-                    }}
-                >
-                    <Button
-                        buttonText={'Reset password'}
-                    />
-                </View>
-            </LinearGradient>
+                    <View
+                        style={{
+                            justifyContent: 'flex-end',
+                            alignItems: 'center',
+                            flex: 1,
+                            marginBottom: heightPercentageToDP('5%')
+                        }}
+                    >
+                        <Button
+                            buttonText={'Reset password'}
+                            onPress={() => onPassword()}
+                        />
+                    </View>
+                </LinearGradient>
+            </ScrollView>
         </ImageBackground>
     )
 }
@@ -171,8 +186,8 @@ const styles = StyleSheet.create({
     userImage: {
         height: heightPercentageToDP('8%'),
         width: heightPercentageToDP('8%'),
-        borderWidth: 7,
-        borderColor: colors.white,
+        borderWidth: 4,
+        borderColor: colors.primary,
         borderRadius: 100
 
     },

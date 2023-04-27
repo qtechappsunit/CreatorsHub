@@ -4,8 +4,12 @@ import images from '../../assets/images';
 import Button from '../../components/Button';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
 import colors from '../../assets/colors';
+import { useNavigation } from '@react-navigation/native';
 
 const GetStarted = () => {
+
+    const navigation = useNavigation();
+
     return (
         <ImageBackground
             source={images.start}
@@ -22,6 +26,7 @@ const GetStarted = () => {
             >
                 <Button
                     buttonText={'Sign in'}
+                    onPress={() => navigation.navigate('Signin')}
                 />
             </View>
             <View
@@ -33,6 +38,7 @@ const GetStarted = () => {
                 <Button
                     buttonText={'Sign up'}
                     buttonStyle={styles.button}
+                    onPress={() => navigation.navigate('Signup')}
                 />
             </View>
         </ImageBackground>
@@ -53,7 +59,7 @@ const styles = StyleSheet.create({
         borderColor: colors.white,
     },
     logoImage: {
-        height: heightPercentageToDP('15%'),
-        width: heightPercentageToDP('26%')
+        height: heightPercentageToDP('8%'),
+        width: '70%'
     },
 })

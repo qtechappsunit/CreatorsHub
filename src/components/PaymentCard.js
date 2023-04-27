@@ -50,9 +50,9 @@ const PaymentCard = ({ image, card, cardText, cardStyle, selected }) => {
                 {selected ?
                     <Check
                         name={'md-checkmark-circle'}
-                        size={65}
+                        size={45}
                         color={colors.primary}
-                        style={{ alignSelf: 'center', }}
+                        style={{ alignSelf: 'center' }}
                     />
                     :
                     <View style={styles.iconView}>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     cardView: {
         padding: heightPercentageToDP('0.5%'),
         backgroundColor: 'rgba(222,222,222,0.5)',
-        width: heightPercentageToDP('43%'),
+        width: '100%',
         alignSelf: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     iconView: {
         padding: heightPercentageToDP('4%'),
-        width: heightPercentageToDP('4%'),
+        width: '4%',
         borderRadius: 100,
         backgroundColor: '#DEDEDE',
         alignItems: 'center',
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
     },
     card: {
         backgroundColor: '#DEDEDE',
-        width: heightPercentageToDP('33%'),
+        width: '75%',
         padding: heightPercentageToDP('1%'),
-        marginLeft: heightPercentageToDP('1.5%')
+        marginLeft: heightPercentageToDP('1.5%'),
     }
 })

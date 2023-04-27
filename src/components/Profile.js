@@ -6,14 +6,15 @@ import colors from '../assets/colors';
 import fonts from '../assets/fonts';
 import StarRating from 'react-native-star-rating-widget';
 import Button from './Button';
+import { useNavigation } from '@react-navigation/native';
 
 
-const CreatorProfile = () => {
 
+const Profile = ({ name, image, book, imageStyle }) => {
 
     let ratingStar = 5;
 
-
+    const navigation = useNavigation();
 
     return (
         <View>
@@ -23,8 +24,9 @@ const CreatorProfile = () => {
                 }}
             >
                 <Image
-                    source={images.photographer1}
-                    style={styles.image}
+                    source={image}
+                    style={[styles.image,imageStyle]}
+
                 />
                 <View
                     style={{
@@ -37,7 +39,7 @@ const CreatorProfile = () => {
                             color: colors.black,
                             fontFamily: fonts.Medium,
                         }}
-                    >Crystal Philips</Text>
+                    >{name}</Text>
                     <Text
                         style={{
                             color: colors.black
@@ -69,6 +71,7 @@ const CreatorProfile = () => {
                                 marginTop: -2
                             }}>3.8</Text>
                     </View>
+                    {book &&
                     <View
                         style={{
                             flexDirection: 'row',
@@ -76,23 +79,26 @@ const CreatorProfile = () => {
                             marginLeft: heightPercentageToDP('-1%')
                         }}
                     >
-                        <Button
-                            buttonStyle={styles.button}
-                            buttonText={'BOOK'}
-                        />
+                            <Button
+                                buttonStyle={styles.button}
+                                buttonText={'BOOK'}
+                                onPress={() => navigation.navigate('Creators')}
+                            />
                     </View>
+                     }
                 </View>
             </View>
         </View>
     )
 }
 
-export default CreatorProfile;
+export default Profile;
 
 const styles = StyleSheet.create({
     image: {
         height: heightPercentageToDP('15%'),
         width: heightPercentageToDP('15%'),
+
     },
     button: {
         padding: heightPercentageToDP('1%'),

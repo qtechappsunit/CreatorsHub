@@ -1,16 +1,22 @@
-import React from 'react';
-import { StyleSheet, View, ImageBackground } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, ImageBackground, TouchableWithoutFeedback } from 'react-native';
 import images from '../assets/images';
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
+import { OptionContext } from '../routes/Context/Provider';
 
-const Wrapper = ({ style,children }) => {
+const Wrapper = ({ children }) => {
+    const { navBar, setNavBar } = useContext(OptionContext)
+
     return (
-        <ImageBackground
-            source={images.background}
-            style={styles.container}
+        <TouchableWithoutFeedback
+            onPress={() => setNavBar(false)}
         >
-            {children}
-        </ImageBackground>
+            <ImageBackground
+                source={images.background}
+                style={styles.container}
+            >
+                {children}
+            </ImageBackground>
+        </TouchableWithoutFeedback>
     )
 }
 

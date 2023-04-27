@@ -8,6 +8,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 import colors from '../../assets/colors';
 import SideOption from '../../components/SideOption';
 import BookingCard from '../../components/BookingCard';
+import BottomBar from '../../components/BottomBar';
 
 const ChooseOption = [
     {
@@ -64,7 +65,7 @@ const ShootCalendar = () => {
                             padding: heightPercentageToDP('1%'),
                             backgroundColor: colors.white,
                             borderRadius: 20,
-                            width: heightPercentageToDP('48%'),
+                            width: '108%',
                             alignSelf: 'center'
                         }}
                     >
@@ -87,6 +88,12 @@ const ShootCalendar = () => {
                 </View>
             </View>
             <SideOption />
+            <View style={styles.wrapper}>
+                <BottomBar
+                    active={'BOOK'}
+                    style={{ width: '97%' }}
+                />
+            </View>
         </Wrapper>
     )
 }
@@ -103,5 +110,8 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         alignSelf: 'center'
     },
-
+    wrapper: {
+        position: 'absolute',
+        bottom: 0
+    }
 })
